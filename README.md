@@ -1,24 +1,87 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Users テーブル
 
-Things you may want to cover:
+| Column                      | Type         | Options                   |
+| --------------------------- | ------------ | ------------------------- |
+| nickname                    | string       | null: false               |
+| email                       | string       | null: false, unique: true |
+| encrypted_password          | string       | null: false               |
+| birthday                    | date         | null: false               |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :comments
+- has_many :blogs
+- has_one  :buy_lists
 
-* Configuration
+## Items テーブル
 
-* Database creation
+| Column                      | Type         | Options                        |
+| --------------------------- | ------------ | ------------------------------ |
+| item_name                   | string       | null: false                    |
+| memo                        | text         |                                |
+| category_id                 | integer      | null: false                    |
+| amount                      | integer      | null: false                    |
+| open_date                   | date         | null: false                    |
+| user                        | references   | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_many :blogs, through::blog_items
 
-* Services (job queues, cache servers, search engines, etc.)
+## Blogs テーブル
 
-* Deployment instructions
+| Column                      | Type         | Options                        |
+| --------------------------- | ------------ | ------------------------------ |
+| recipe_name                 | string       | null: false                    |
+| explain                     | text         | null: false                    |
+| price                       | integer      | null: false                    |
+| user                        | references   | null: false, foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :user
+- has_many :items, through::blog_items
+- has many :comments
+
+## Blog_items テーブル
+
+| Column                      | Type         | Options                        |
+| --------------------------- | ------------ | ------------------------------ |
+| blog                        | references   | null :false, foreign_key: true |
+| item                        | references   | null :false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+
+## Comments テーブル
+
+| Column                      | Type         | Options                        |
+| --------------------------- | ------------ | ------------------------------ |
+| text                        | text         | null: false                    |
+| blog                        | references   | null: false, foreign_key: true |
+| user                        | references   | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :blog
+
+## Buy_lists テーブル
+
+| Column                      | Type         | Options                        |
+| --------------------------- | ------------ | ------------------------------ |
+| item_name                   | string       | null: false                    |
+| memo                        | text         |                                |
+| category_id                 | integer      | null: false                    |
+| amount                      | integer      | null: false                    |
+| user                        | references   | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user

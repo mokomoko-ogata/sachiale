@@ -1,0 +1,92 @@
+<%= render "shared/header" %>
+<div class='main'>
+  <%# 画面上部の「誰でも簡単に食材の在庫を管理できるアプリ」帯部分 %>
+  <div class='title-contents'>
+    <h2 class='service-title'>
+      誰でも簡単に食材の在庫を管理できるアプリ
+    </h2>
+    <p class='service-explain'>
+      sachialeはだれでもかんたんに在庫管理できる
+    </p>
+    <p class='service-explain'>
+      冷蔵庫食材管理アプリです
+    </p>
+    <div class='store-btn'>
+      <%= link_to image_tag("https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2011-09-21&kind=iossoftware&bubble=ios_apps", class:"apple-btn"), "#" %>
+      <%= link_to image_tag("dl-android.png", class:"google-btn"), "#" %>
+    </div>
+  </div>
+  <%# /画面上部の「誰でも簡単に食材の在庫を管理できるアプリ」帯部分  %>
+
+  <%# サービス概要表示部分 %>
+    <div class="container">
+      <div class="service">
+        <div class="icon-holder">
+          <%= link_to image_tag("icon01.png", class:"service-icon"), "#" %>
+        </div>
+        <h4 class="service-heading">サービス概要</h4>
+        <p class="description">
+          サービス概要の説明
+        </p>
+      </div>    
+      <div class="service">
+        <div class="icon-holder">
+          <%= link_to image_tag("icon02.png", class:"service-icon"), "#" %>
+        </div>
+        <h4 class="service-heading">マイページ</h4>
+        <p class="description">
+          マイページの説明
+        </p>
+      </div>
+    </div>
+  <%# /サービス概要表示部分 %>
+
+  <%# 商品一覧 %>
+  <div class='item-contents'>
+    <h2 class='title'>みんなのオススメレシピ！</h2>
+    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <ul class='item-lists'>
+      <% if @blogs.present? %>
+        <% @blogs.each do |blog| %>
+          <li class='list'>
+            <%= link_to blog_path(blog.id) do %>
+            <div class='item-img-content'>
+              <%= image_tag blog.image, class: "item-img" %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= blog.recipe_name %>
+              </h3>      
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+            <% end %>
+          </li>
+        <% end %>
+      <% else %>
+        <li class='list'>
+          <%= link_to '#' do %>
+          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              レシピを投稿してね！
+            </h3>      
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <%# /商品一覧 %>
+</div>
+<%= link_to('hoge', class: 'purchase-btn') do %>
+  <span class='purchase-btn-text'>投稿する</span>
+  <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+<% end %>
+<%= render "shared/footer" %>

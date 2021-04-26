@@ -7,6 +7,5 @@ class BlogsController < ApplicationController
   end
 
   def create
-    
   end
 end

@@ -92,6 +92,11 @@
   margin-bottom: 15px;
 }
 
+#image-preview>div>img{
+  width: 220px;
+  height: 150px;
+}
+
 /* /投稿画像 */
 
 /* レシピ名とレシピ説明 */

@@ -12,14 +12,14 @@
     <%# 投稿画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
-        出品画像
+        レシピ画像
         <span class="indispensable">必須</span>
       </div>
       <div class="click-upload">
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :image, id:"item-image", name: 'item[images][]' %>
+        <%= f.file_field :image, id:"item-image" %>
         <div id="image-list"></div>
       </div>
     </div>
@@ -43,24 +43,32 @@
     <%# 材料費合計 %>
     <div class="dish-price">
       <div class="weight-bold-text question-text">
-        <span>販売価格</span>
+        <span>この料理にかかる食費</span>
         <a class="question" href="#">?</a>
       </div>
         <div class="price-content">
           <div class="price-text">
-            <span>価格</span>
+            <span>食費</span>
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
           <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div>
+      </div>
     </div>
     <%# /材料費合計 %>
     <%# 下部ボタン %>
-    <div class="sell-btn-contents">
-      <%= f.submit "出品する" ,class:"sell-btn" %>
+    <div class="contribution-btn-contents">
+      <%= f.submit "投稿する" ,class:"contribution-btn" %>
       <%=link_to 'もどる', root_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
+  <% end %>
+  <footer class="recipes-contribution-footer">
+    <%= link_to image_tag('sachiale-logo-title.png' , size: '185x50'), "/" %>
+    <p class="inc">
+      ©︎sachiale,Inc.
+    </p>
+  </footer>
 </div>

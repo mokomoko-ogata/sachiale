@@ -49,7 +49,7 @@
       <% if @blogs.present? %>
         <% @blogs.each do |blog| %>
           <li class='list'>
-            <%= link_to blog_path(blog.id) do %>
+            <%= link_to blogs_path(blog.id) do %>
             <div class='item-img-content'>
               <%= image_tag blog.image, class: "item-img" %>
             </div>

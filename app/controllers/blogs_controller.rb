@@ -18,6 +18,10 @@ class BlogsController < ApplicationController
     end
   end
 
+  def show
+    @blog = Blog.find(params[:id])
+  end
+
   private
 
   def blog_params

@@ -1,0 +1,192 @@
+.recipe-contribution-contents {
+  background-color: #f5f5f5;
+  font-family: "Source Sans Pro", Helvetica, Arial, "æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“", "YuGothic", "ãƒ¡ã‚¤ãƒªã‚ª", "Meiryo", sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 500px;
+}
+
+.recipe-contribution-header {
+  padding: 5vh 0;
+  text-align: center;
+}
+
+.recipe-contribution-main {
+  background-color: #FFF;
+  width: 70vw;
+  min-width: 450px;
+  padding: 10vh 15vw;
+}
+
+.recipe-contribution-title {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 共通 */
+.indispensable {
+  background: #ea352d;
+  margin-left: 8px;
+  padding: 3px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.weight-bold-text {
+  font-weight: bold;
+  min-width: 170px;
+  margin-bottom: 10px;
+}
+
+.select-box {
+  height: 30px;
+  width: 100%;
+  background-color: #f5f5f5;
+  padding-left: 20px;
+}
+
+.question {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #0099e8;
+  color: #FFF;
+  font-size: 13px;
+  text-align: center;
+  line-height: 20px;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.question-text {
+  display: flex;
+}
+
+/* /共通 */
+
+/* 投稿画像 */
+.img-upload {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 2vh 0;
+}
+
+.image-element img {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+}
+
+.click-upload {
+  margin: 15px 0;
+  min-width: 250px;
+}
+
+.click-upload>p {
+  margin-bottom: 15px;
+}
+
+#image-preview>div>img{
+  width: 220px;
+  height: 150px;
+}
+
+/* /投稿画像 */
+
+/* レシピ名とレシピ説明 */
+.new-blogs {
+  padding: 2vh 0;
+}
+
+.recipes-text {
+  width: 100%;
+  padding: 16px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: none;
+}
+
+.recipes-explain {
+  margin-top: 2vh;
+}
+
+/* /レシピ名とレシピ説明 */
+
+/* 材料費合計 */
+.dish-price {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.price-content {
+  width: 300px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price-text {
+  /* min-width: 170px; */
+  display: flex;
+  align-items: center;
+}
+
+.sell-yen {
+  font-size: 18px;
+}
+
+.price-input {
+  height: 30px;
+  text-align: right;
+  padding-right: 10px;
+}
+/* /材料費合計 */
+
+/* 下部ボタン */
+.contribution-btn-contents {
+  width: 500px;
+  text-align: center;
+}
+
+.contribution-btn {
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  color: #fff;
+  width: 100%;
+  height: 50px;
+  font-size: 14px;
+  margin-bottom: 4vh;
+}
+
+.back-btn {
+  background: #aaa;
+  border: 1px solid #aaa;
+  color: #fff;
+  padding: 15px 35%;
+  text-decoration: none;
+}
+
+/* /下部ボタン */
+
+.recipes-contribution-footer {
+  background-color: #f5f5f5;
+  width: 100vw;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inc {
+  font-size: 13px;
+}

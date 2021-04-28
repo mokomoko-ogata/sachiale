@@ -45,11 +45,25 @@ ActiveRecord::Schema.define(version: 2021_04_28_034427) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "item_name", null: false
-    t.text "memo", null: false
-    t.integer "category_id", null: false
+    t.text "memo"
     t.integer "amount", null: false
     t.date "open_date", null: false
     t.bigint "user_id"
+    t.integer "category_id", null: false
+    t.integer "bean_id"
+    t.integer "bread_id"
+    t.integer "corm_id"
+    t.integer "egg_id"
+    t.integer "meat_id"
+    t.integer "milk_id"
+    t.integer "mushroom_id"
+    t.integer "noodle_id"
+    t.integer "rice_id"
+    t.integer "seafood_id"
+    t.integer "seasoning_id"
+    t.integer "seaweed_id"
+    t.integer "vegetable_id"
+    t.integer "unit_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"

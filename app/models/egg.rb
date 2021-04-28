@@ -6,4 +6,7 @@ class egg < ActiveHash::Base
     { id: 4, name: 'うこっけいの卵' },
     { id: 5, name: 'その他卵類' }
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

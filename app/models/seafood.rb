@@ -16,4 +16,7 @@ class Seafood < ActiveHash::Base
     { id: 14, name: 'カニ' },
     { id: 15, name: 'その他魚介類' }
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

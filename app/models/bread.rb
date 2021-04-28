@@ -8,4 +8,7 @@ class Bread < ActiveHash::Base
     { id: 6, name: '菓子パン'},
     { id: 7, name: 'その他パン類'},
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

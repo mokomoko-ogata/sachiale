@@ -20,4 +20,7 @@ class Meat < ActiveHash::Base
     { id: 18, name: '挽き肉'}
     { id: 19, name: 'その他肉類' }
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

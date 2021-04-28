@@ -33,4 +33,7 @@ class Vegetable < ActiveHash::Base
     { id: 31, name: 'バナナ' },
     { id: 32, name: 'その他果物類' }
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

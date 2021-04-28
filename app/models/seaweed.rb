@@ -10,4 +10,7 @@ class Seaweed < ActiveHash::Base
     { id: 8, name: 'モズク' },
     { id: 9, name: 'その他乾物、海藻類' }
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

@@ -12,4 +12,7 @@ class Mushroom > ActiveHash::Base
     { id: 10, name: 'ふき' },
     { id: 11, name: 'その他きのこ、山菜類' }
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

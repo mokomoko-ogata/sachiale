@@ -10,4 +10,7 @@ class Unit < ActiveHash::Base
     { id: 8, name: '箱' },
     { id: 9, name: 'その他' }
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

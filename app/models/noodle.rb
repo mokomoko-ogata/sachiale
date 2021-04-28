@@ -9,4 +9,7 @@ class Noodle < ActiveHash::Base
     { id: 7, name: '乾麺'},
     { id: 8, name: 'その他麺類'}
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

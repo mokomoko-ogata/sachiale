@@ -9,4 +9,7 @@ class Corm < ActiveHash::Base
     { id: 95, name: '自然薯' },
     { id: 96, name: 'その他芋類' }
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

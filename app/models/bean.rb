@@ -15,4 +15,7 @@ class Bean < ActiveHash::Base
     { id: 13, name: 'がんもどき'},
     { id: 14, name: 'その他豆、豆腐、豆腐加工品類'}
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

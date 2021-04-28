@@ -30,4 +30,7 @@ class Seasoning < ActiveHash::Base
     { id: 28, name: 'コチュジャン'},
     { id: 29, name: 'その他調味料'}
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

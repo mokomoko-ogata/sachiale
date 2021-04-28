@@ -9,4 +9,7 @@ class Milk < ActiveHash::Base
     { id: 7, name: '練乳'},
     { id: 8, name: 'その他乳製品'},
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

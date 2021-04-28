@@ -7,4 +7,7 @@ class Rice < ActiveHash::Base
     { id: 5, name: '餅'},
     { id: 6, name: 'その他ごはん類'}
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

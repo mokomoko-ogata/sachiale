@@ -16,4 +16,7 @@ class Category < ActiveHash::Base
     { id: 14, name: '調味料'},
     { id: 15, name: '飲み物' }
   ]
+
+  include ActiveHash::Associations
+  has_many :items
 end

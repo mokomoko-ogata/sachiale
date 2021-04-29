@@ -20,11 +20,12 @@ class Item < ApplicationRecord
   belongs_to :unit
 
   with_options presence: true do
-    validates :item_name
-    validates :amount
+    validates :item_name, length: { maximum: 40 }
+    validates :amount, numericality: { with: /\A[0-9]+\z/ }, numericality: { only_integer: true }
     validates :open_date
     validates :image
   end
+  validates :memo, length: { maximum: 1_000 }
 
   with_options numericality: { other_than: 1 } do
     validates :category_id

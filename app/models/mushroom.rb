@@ -1,4 +1,4 @@
-class Mushroom > ActiveHash::Base
+class Mushroom < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: '椎茸' },

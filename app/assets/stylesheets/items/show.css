@@ -48,3 +48,13 @@
   border: 1px solid #dedede;
   font-size: 14px;
 }
+
+.item-red-btn {
+  text-align: center;
+  background-color: #ea352d;
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFF;
+  margin: 20px 0px;
+  padding: 2vh 10vw;
+}

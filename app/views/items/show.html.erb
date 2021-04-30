@@ -29,6 +29,11 @@
         </tr>
       </tbody>
     </table>
+    <% if user_signed_in? && current_user.id == @item.user_id %>
+      <%= link_to "食材の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+    <% end %>
+      
+    
   </div>
 </div>
 

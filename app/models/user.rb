@@ -14,4 +14,5 @@ class User < ApplicationRecord
 
   has_many :blogs
   has_many :items
+  has_many :buy_lists
 end

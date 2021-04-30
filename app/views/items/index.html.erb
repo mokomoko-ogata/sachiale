@@ -1,2 +1,41 @@
-<h2>アイテム一覧ページ</h2>
-<%= link_to "アイテム追加", new_item_path, class:"back-btn" %>
+<%= render "shared/header" %>
+
+<div class="my-item-page">
+  <div class="title-content">
+    <h2 class="page-title">
+      現在保存されている食材はこちら！
+    </h2>
+    <p class="page-explain">
+      現在保存されている食材が一覧で表示されています。
+    </p>
+    <p class="page-explain">
+      賞味期限が近い食材から使う様にしましょう！
+    </p>
+  </div>
+
+  <div class="item-show">
+    <% @item.each do |item| %>
+      <div class="item-list">
+        <%= image_tag item.image, class:"item-image" %>
+        <div class="item-detail">
+          <div class="item-name"><%= item.item_name %></div>
+          <div class="bottom-item-detail">
+            <div class="open-date">賞味期限：<%= item.open_date %></div>
+            <div class="amount"><%= item.amount %><%= item.unit.name%></div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="links">
+    <div class="new-item">
+      <%= link_to "アイテム追加", new_item_path, class:"page-change-btn" %>
+    </div>
+    <div class="buy-list">
+      <%= link_to "買い物リスト", '#', class:"page-change-btn" %>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>

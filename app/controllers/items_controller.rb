@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    
+    @item = Item.where(user_id: current_user.id).order(open_date: :asc)
   end
 
   def new

@@ -9,7 +9,7 @@ class Meat < ActiveHash::Base
     { id: 7, name: '豚薄切り肉' },
     { id: 8, name: '豚生姜焼き用肉' },
     { id: 9, name: '豚ブロック肉' },
-    { id: 10, name: '豚焼肉用'},
+    { id: 10, name: '豚焼肉用' },
     { id: 11, name: 'その他豚肉' },
     { id: 12, name: '鳥もも肉' },
     { id: 13, name: '鶏むね肉' },
@@ -17,7 +17,7 @@ class Meat < ActiveHash::Base
     { id: 15, name: 'ハム' },
     { id: 16, name: 'ソーセージ' },
     { id: 17, name: 'ベーコン' },
-    { id: 18, name: '挽き肉'},
+    { id: 18, name: '挽き肉' },
     { id: 19, name: 'その他肉類' }
   ]
 

@@ -1,0 +1,35 @@
+<%= render "shared/header" %>
+
+<div class="item-show">
+  <div class="item-box">
+    <div class="item-img-content">
+      <%= image_tag @item.image, class:"item-box-image" %>
+    </div>
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">食品名</th>
+          <td class="detail-value"><%= @item.item_name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">食品のメモ</th>
+          <td class="detail-value"><%= @item.memo%></td>
+        </tr>
+        <tr>
+          <th class="detail-item">保存数量</th>
+          <td class="detail-value"><%= @item.amount %><%= @item.unit.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">賞味期限</th>
+          <td class="detail-value"><%= @item.open_date %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">カテゴリー</th>
+          <td class="detail-value"><%= @item.category.name %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= render "shared/footer" %>

@@ -42,7 +42,7 @@ RSpec.describe Blog, type: :model do
       it 'recipe_nameが40文字以上の場合投稿できない' do
         @blog.recipe_name = 'a' * 50
         @blog.valid?
-        expect(@blog.errors.full_messages).to include("Recipe name is too long (maximum is 40 characters)")
+        expect(@blog.errors.full_messages).to include('Recipe name is too long (maximum is 40 characters)')
       end
 
       it 'explainが空の場合投稿できない' do
@@ -54,7 +54,7 @@ RSpec.describe Blog, type: :model do
       it 'explainが1,000文字以上の場合投稿できない' do
         @blog.explain = 'a' * 2001
         @blog.valid?
-        expect(@blog.errors.full_messages).to include("Explain is too long (maximum is 2000 characters)")
+        expect(@blog.errors.full_messages).to include('Explain is too long (maximum is 2000 characters)')
       end
 
       it 'priceが空の場合投稿できない' do
@@ -66,31 +66,31 @@ RSpec.describe Blog, type: :model do
       it 'priceが全角数字の場合投稿できない' do
         @blog.price = '１００００'
         @blog.valid?
-        expect(@blog.errors.full_messages).to include("Price is not a number")
+        expect(@blog.errors.full_messages).to include('Price is not a number')
       end
 
       it 'priceが数字以外の場合投稿できない' do
         @blog.price = '三百円'
         @blog.valid?
-        expect(@blog.errors.full_messages).to include("Price is not a number")
+        expect(@blog.errors.full_messages).to include('Price is not a number')
       end
 
       it 'priceが半角英数字混合では投稿できない' do
         @blog.price = '2thousand'
         @blog.valid?
-        expect(@blog.errors.full_messages).to include("Price is not a number")
+        expect(@blog.errors.full_messages).to include('Price is not a number')
       end
 
       it 'priceが半角英語の場合投稿できない' do
         @blog.price = 'onethousand'
         @blog.valid?
-        expect(@blog.errors.full_messages).to include("Price is not a number")
+        expect(@blog.errors.full_messages).to include('Price is not a number')
       end
 
       it 'userが紐づいていない場合投稿できない' do
         @blog.user = nil
         @blog.valid?
-        expect(@blog.errors.full_messages).to include("User must exist")
+        expect(@blog.errors.full_messages).to include('User must exist')
       end
     end
   end

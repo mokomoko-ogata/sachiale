@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @blogs = Blog.order('created_at DESC')  
+    @blogs = Blog.order('created_at DESC')
   end
 
   def new

@@ -42,7 +42,7 @@
   display: flex;
   border: 2px solid #f0f05a;
   margin-bottom: 5px;
-
+  color: black;
 }
 
 .item-list>.item-image{

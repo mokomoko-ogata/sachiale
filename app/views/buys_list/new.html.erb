@@ -5,8 +5,8 @@
 
   </header>
   <div class="items-save-main">
-    <h2 class="items-save-title">補充する食材の情報を入力</h2>
-    <%= form_with model: @buys_list, local: true do |f| %>
+    <h2 class="items-save-title">買わないといけない食材</h2>
+    <%= form_with model: @buy_list, url: buys_list_index_path, local: true do |f| %>
 
     <%= render 'shared/error_messages', model: @buy_list %>
 
@@ -19,26 +19,24 @@
       <%= f.text_area :item_name, class:"items-text", id:"item-name", placeholder:"食材名（必須 40文字まで)", maxlength:"40" %>
       <div class="items-explain">
         <div class="weight-bold-text">
-          食材のメモ
+          買い物メモ
         </div>
-        <%= f.text_area :memo, class:"items-text", id:"item-info", placeholder:"食材のメモ（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %>
+        <%= f.text_area :buy_memo, class:"items-text", id:"item-info", placeholder:"買い物メモ（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %>
       </div>
     </div>
     <%# /商品名と商品説明 %>
 
     <%# 商品の詳細 %>
-    <div class="weight-bold-text">食材の詳細</div>
+    <div class="weight-bold-text">買い物詳細</div>
     <div class="items-detail">
       <div class="item-amount">
         <div class="weight-bold-text">
           買う予定の数量
-          <span class="indispensable">必須</span>
         </div>
         <div>
           <%= f.text_field :amount, class:"amount-input", placeholder:"例) 3" %>
           <div class="unit-text">
-            単位選択
-            <span class="indispensable">必須</span>
+            単位選択  ↓
           </div>
           <%= f.collection_select(:unit_id, Unit.all, :id, :name, {}, {class:"select-box", id:"item-amount"}) %>
         </div>

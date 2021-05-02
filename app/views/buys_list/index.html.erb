@@ -1,2 +1,33 @@
-<h2>買い物リスト</h2>
-<%= link_to "追加", new_buys_list_path%>
+<%= render "shared/header" %>
+
+<div class="buy-list-page">
+  <div class="title-content">
+    <h2 class="page-title">
+      買い物リスト
+    </h2>
+  </div>
+
+  <div class="list-show">
+    <% @buy_list.each do |item| %>
+      <div class="buy-item-list">
+        <div class="top-buy-detail">
+          <div class="buy-item-name">
+          <%= item.item_name %>
+          </div>
+          <div class="buy-amount">
+            買う予定の数量：<%= item.amount %><%= item.unit.name %>
+          </div>
+        </div>
+        <div class="buy-memo">
+            メモ：<%= item.buy_memo %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="buy-add">
+    <%= link_to "追加", new_buys_list_path, class: "buy-add-btn"%>
+  </div>
+</div>
+
+
+<%= render "shared/footer" %>

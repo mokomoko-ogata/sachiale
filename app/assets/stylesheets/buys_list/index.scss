@@ -1,0 +1,83 @@
+.buy-list-page {
+  background: #f8f8f8;
+}
+
+.title-content {
+  width: 100vw;
+  background-image: image-url('sachiale-header02.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5vh 15vw;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+}
+
+.page-title {
+  font-size: 8vh;
+  color: #ffcb00;
+}
+
+.list-show {
+  background-color: #f8f8f8;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vh 0;
+  overflow: scroll;
+}
+
+.buy-item-list{
+  width: 800px;
+  height: 120px;
+  border: 2px solid #f0f05a;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.top-buy-detail{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  border-bottom: 1px solid black;
+}
+
+.buy-item-name{
+  width: 50%;
+  font-size: 40px;
+
+}
+
+.buy-amount{
+  width: 50%;
+  font-size: 30px;
+  padding-top: 10px;
+}
+
+.buy-memo{
+  width: 100%;
+  height: 50%;
+  font-size: 20px;
+}
+
+.buy-add{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 360px;
+  background-color: #64bfe5;
+  border-radius: 100%;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.buy-add-btn{
+  color: white;
+}

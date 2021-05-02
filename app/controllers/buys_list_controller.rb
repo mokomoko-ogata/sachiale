@@ -1,6 +1,6 @@
 class BuysListController < ApplicationController
   def index
-    @buy_list = BuyList.all
+    @buy_list = BuyList.where(user_id: current_user.id)
   end
 
   def new
@@ -27,6 +27,12 @@ class BuysListController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @buy_list = BuyList.find(params[:id])
+    @buy_list.destroy
+    redirect_to buys_list_index_path(current_user.id)
   end
 
   private

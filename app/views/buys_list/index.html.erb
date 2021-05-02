@@ -21,8 +21,13 @@
             <%= link_to "編集", edit_buys_list_path(item.id), method: :get, class:"buy-edit-btn" %>
           </div>
         </div>
-        <div class="buy-memo">
+        <div class="bottom-buy-detail">
+          <div class="buy-memo">
             メモ：<%= item.buy_memo %>
+          </div>
+          <div class="buy-delete">
+            <%= link_to "削除", buys_list_path(item.id), method: :delete, class:"buy-delete-btn" %>
+          </div>
         </div>
       </div>
     <% end %>

@@ -36,49 +36,49 @@ RSpec.describe BuyList, type: :model do
       it 'item_nameが空の場合追加できない' do
         @buy_list.item_name = ''
         @buy_list.valid?
-        expect(@buy_list.errors.full_messages).to include("Item name can't be blank") 
+        expect(@buy_list.errors.full_messages).to include("Item name can't be blank")
       end
 
       it 'item_nameが40文字以上の場合追加できない' do
         @buy_list.item_name = 'a' * 41
         @buy_list.valid?
-        expect(@buy_list.errors.full_messages).to include("Item name is too long (maximum is 40 characters)")
+        expect(@buy_list.errors.full_messages).to include('Item name is too long (maximum is 40 characters)')
       end
 
       it 'buy_memoが1000文字以上の場合追加できない' do
         @buy_list.buy_memo = 'a' * 1001
         @buy_list.valid?
-        expect(@buy_list.errors.full_messages).to include("Buy memo is too long (maximum is 1000 characters)")
+        expect(@buy_list.errors.full_messages).to include('Buy memo is too long (maximum is 1000 characters)')
       end
 
       it 'amountが全角数字では追加できない' do
         @buy_list.amount = '２００'
         @buy_list.valid?
-        expect(@buy_list.errors.full_messages).to include("Amount is not a number")
+        expect(@buy_list.errors.full_messages).to include('Amount is not a number')
       end
 
       it 'amountが数字以外では追加できない' do
         @buy_list.amount = '二百'
         @buy_list.valid?
-        expect(@buy_list.errors.full_messages).to include("Amount is not a number")
+        expect(@buy_list.errors.full_messages).to include('Amount is not a number')
       end
 
       it 'amountが半角英数字混合では追加できない' do
         @buy_list.amount = '2hundred'
         @buy_list.valid?
-        expect(@buy_list.errors.full_messages).to include("Amount is not a number")
+        expect(@buy_list.errors.full_messages).to include('Amount is not a number')
       end
 
       it 'amountが半角英字では追加できない' do
         @buy_list.amount = 'onehundred'
         @buy_list.valid?
-        expect(@buy_list.errors.full_messages).to include("Amount is not a number")
+        expect(@buy_list.errors.full_messages).to include('Amount is not a number')
       end
 
       it 'userが紐づいていないと追加できない' do
         @buy_list.user = nil
         @buy_list.valid?
-        expect(@buy_list.errors.full_messages).to include("User must exist")
+        expect(@buy_list.errors.full_messages).to include('User must exist')
       end
     end
   end

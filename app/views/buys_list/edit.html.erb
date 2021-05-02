@@ -1,0 +1,66 @@
+<%# cssはitems/new.cssを参照%>
+<div class="items-save-contents">
+  <header class="items-save-header">
+    <%= link_to image_tag('sachiale-logo-title.png' , size: '185x50'), "/" %>
+
+  </header>
+  <div class="items-save-main">
+    <h2 class="items-save-title">買わないといけない食材</h2>
+    <%= form_with model: @buy_list, url: buys_list_path, local: true do |f| %>
+
+    <%= render 'shared/error_messages', model: @buy_list %>
+
+    <%# 商品名と商品説明 %>
+    <div class="new-items">
+      <div class="weight-bold-text">
+        食材名
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_area :item_name, class:"items-text", id:"item-name", placeholder:"食材名（必須 40文字まで)", maxlength:"40" %>
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          買い物メモ
+        </div>
+        <%= f.text_area :buy_memo, class:"items-text", id:"item-info", placeholder:"買い物メモ（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %>
+      </div>
+    </div>
+    <%# /商品名と商品説明 %>
+
+    <%# 商品の詳細 %>
+    <div class="weight-bold-text">買い物詳細</div>
+    <div class="items-detail">
+      <div class="item-amount">
+        <div class="weight-bold-text">
+          買う予定の数量
+        </div>
+        <div>
+          <%= f.text_field :amount, class:"amount-input", placeholder:"例) 3" %>
+          <div class="unit-text">
+            単位選択  ↓
+          </div>
+          <%= f.collection_select(:unit_id, Unit.all, :id, :name, {}, {class:"select-box", id:"item-amount"}) %>
+        </div>
+      </div>
+    </div>
+    <%# /商品の詳細 %>
+
+    <%# 下部ボタン %>
+    <div class="sell-btn-contents">
+      <%= f.submit "変更する" ,class:"sell-btn" %>
+      <%=link_to 'もどる', buys_list_index_path, class:"back-btn" %>
+    </div>
+    <%# /下部ボタン %>
+  </div>
+  <% end %>
+
+  <footer class="items-sell-footer">
+    <ul class="menu">
+      <li><a href="#">プライバシーポリシー</a></li>
+      <li><a href="#">sachiale利用規約</a></li>
+    </ul>
+    <%= link_to image_tag('sachiale-logo-title.png' , size: '185x50'), "/" %>
+    <p class="inc">
+      ©︎sachiale,Inc.
+    </p>
+  </footer>
+</div>

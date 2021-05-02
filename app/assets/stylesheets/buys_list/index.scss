@@ -48,15 +48,28 @@
 }
 
 .buy-item-name{
-  width: 50%;
+  width: 45%;
   font-size: 40px;
 
 }
 
 .buy-amount{
-  width: 50%;
+  width: 45%;
   font-size: 30px;
   padding-top: 10px;
+}
+
+.buy-edit{
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a8be62;
+}
+
+.buy-edit-btn{
+  font-size: 20px;
+  color: white;
 }
 
 .buy-memo{
@@ -65,13 +78,18 @@
   font-size: 20px;
 }
 
+.btn-area{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .buy-add{
   width: 100px;
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 360px;
   background-color: #64bfe5;
   border-radius: 100%;
   font-weight: bold;

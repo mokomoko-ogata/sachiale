@@ -16,6 +16,19 @@ class BuysListController < ApplicationController
     end
   end
 
+  def edit
+    @buy_list = BuyList.find(params[:id])
+  end
+
+  def update
+    @buy_list = BuyList.find(params[:id])
+    if @buy_list.update(buy_list_params)
+      redirect_to buys_list_index_path(current_user.id)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def buy_list_params

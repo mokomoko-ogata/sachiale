@@ -65,15 +65,19 @@
   font-size: 20px;
 }
 
-.buy-add-btn{
+.buy-add{
   width: 100px;
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 360px;
-  background-color: #ffcb00;
+  background-color: #64bfe5;
   border-radius: 100%;
   font-weight: bold;
   font-size: 25px;
+}
+
+.buy-add-btn{
+  color: white;
 }

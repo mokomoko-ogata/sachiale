@@ -72,10 +72,29 @@
   color: white;
 }
 
-.buy-memo{
+.bottom-buy-detail{
   width: 100%;
   height: 50%;
+  display: flex;
+}
+
+.buy-memo{
+  width: 90%;
+  height: 100%;
   font-size: 20px;
+}
+
+.buy-delete{
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+
+.buy-delete-btn{
+  font-size: 20px;
+  color: white;
 }
 
 .btn-area{

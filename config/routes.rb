@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root to: "blogs#index"
   resources :blogs
   resources :items
-  resources :buys_list, only: [:index, :new, :create]
+  resources :buys_list, only: [:index, :new, :create, :edit, :update]
 end

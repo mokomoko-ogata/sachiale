@@ -13,4 +13,5 @@ class Unit < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :items
+  has_many :buys_list
 end

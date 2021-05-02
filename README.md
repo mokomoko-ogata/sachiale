@@ -77,9 +77,8 @@
 | Column                      | Type         | Options                        |
 | --------------------------- | ------------ | ------------------------------ |
 | item_name                   | string       | null: false                    |
-| memo                        | text         |                                |
-| category_id                 | integer      | null: false                    |
-| amount                      | integer      | null: false                    |
+| buy_memo                    | text         |                                |
+| amount                      | integer      |                                |
 | user                        | references   | null: false, foreign_key: true |
 
 ### Association

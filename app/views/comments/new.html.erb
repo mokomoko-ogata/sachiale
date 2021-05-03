@@ -1,0 +1,22 @@
+<div id="comments">
+  <% @comments.reverse_each do |comment| %>
+    <p><%= comment.text %></p>
+  <% end %>
+</div>
+
+<div class="comment-box">
+  <form>
+    <%= form_with model: @comment, url: blog_comments_path do |f| %>
+      <%= f.text_field :text, class: "comment-text" %>
+      <button type="submit" class="comment-btn">
+        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+        <%= f.submit "コメントする" %>
+      </button>
+    <% end %>
+  </form>
+  <p class="comment-warn">
+    相手のことを考え丁寧なコメントを心がけましょう。
+    <br>
+    不快な言葉遣いなどは利用制限や退会処分となることがあります。
+  </p>
+</div>

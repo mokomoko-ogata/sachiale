@@ -114,6 +114,12 @@
   padding: 2vh 10vw;
 }
 
+#comments{
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+}
+
 .comment-box {
   width: 40vw;
   background-color: #fff;

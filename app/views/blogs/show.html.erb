@@ -38,12 +38,26 @@
   </div>
 
   <% if user_signed_in? && current_user.id == @blog.user_id %>
-      <%= link_to "商品の編集", edit_blog_path(@blog.id), method: :get, class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", blog_path(@blog.id), method: :delete, class:"item-destroy" %>
-    <% end %>
+    <%= link_to "商品の編集", edit_blog_path(@blog.id), method: :get, class: "item-red-btn" %>
+    <p class="or-text">or</p>
+    <%= link_to "削除", blog_path(@blog.id), method: :delete, class:"item-destroy" %>
+  <% end %>
 
-  <div class="comment-box">
+  <div class="comment-area">
+    <div class="comment-input">
+      <%= form_with model: @comment, url: blog_comments_path(@blog.id), class:"comment-form-area" do |f| %>
+        <%= f.text_field :text, class: "comment-input-form" %>
+        <%= f.submit '送信', class: "comment-submit" %>
+      <% end %>
+    </div>
+    <div id='comments'>
+      <% @comments.reverse_each do |comment| %>
+        <p><%= comment.user.nickname %> : <%= comment.text %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- <div class="comment-box">
     <form>
       <textarea class="comment-text"></textarea>
       <p class="comment-warn">
@@ -56,7 +70,8 @@
         <span>コメントする<span>
       </button>
     </form>
-  </div>
+  </div> -->
+
   <div class="links">
     <a href="#" class="change-recipe-btn">
       ＜ 前のレシピ

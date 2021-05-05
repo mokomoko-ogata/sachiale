@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "blogs#index"
+  get 'items/search'
   resources :blogs do
     resources :comments, only: [:new, :create]
   end

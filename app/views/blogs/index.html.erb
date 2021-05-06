@@ -22,7 +22,7 @@
     <div class="container">
       <div class="service">
         <div class="icon-holder">
-          <%= link_to image_tag("icon01.png", class:"service-icon"), "#" %>
+          <%= link_to image_tag("icon01.png", class:"service-icon"), items_path %>
         </div>
         <h4 class="service-heading">サービス概要</h4>
         <p class="description">
@@ -31,13 +31,12 @@
       </div>    
       <div class="service">
         <div class="icon-holder">
-          <%= link_to image_tag("icon02.png", class:"service-icon"), "#" %>
+          <%= link_to image_tag("icon02.png", class:"service-icon"), items_path %>
         </div>
         <h4 class="service-heading">マイページ</h4>
         <p class="description">
           マイページの説明
         </p>
-        <%= link_to "マイページ", items_path, class:"back-btn" %>
       </div>
     </div>
   <%# /サービス概要表示部分 %>

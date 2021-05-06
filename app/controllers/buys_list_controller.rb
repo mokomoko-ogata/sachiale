@@ -1,4 +1,6 @@
 class BuysListController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :destroy]
+
   def index
     @buy_list = BuyList.where(user_id: current_user.id)
   end

@@ -25,20 +25,34 @@
           <%= link_to image_tag("icon01.png", class:"service-icon"), items_path %>
         </div>
         <h4 class="service-heading">サービス概要</h4>
-        <p class="description">
-          サービス概要の説明
-        </p>
+        <span class="description">
+          いつ買ったのか分からない食材や、既に賞味期限が切れた食材が冷蔵庫の中に眠っていませんか？<br>
+          このアプリは購入した食材の情報を登録することで、今ある食材の在庫を管理する事ができます！<br>
+          また、レシピを投稿する事であなたのオススメ料理をみんなにシェアする事ができます！
+        </span>
       </div>    
       <div class="service">
         <div class="icon-holder">
           <%= link_to image_tag("icon02.png", class:"service-icon"), items_path %>
         </div>
         <h4 class="service-heading">マイページ</h4>
-        <p class="description">
-          マイページの説明
-        </p>
+        <span class="description">
+          ユーザー登録することでマイページに食材在庫リストを作成することができます！<br>
+          またマイページより、買い物リストページにも遷移する事ができます。<br>
+          買い物リストを作成して、買い忘れを無くしましょう！<br>
+          アイコンをクリックしてマイページに行こう！
+        </span>
       </div>
     </div>
+    <script>
+      $(function(){
+        $('.service-heading').hover(function(){
+          $(this).next("span").animate({opacity:"show"}, "slow");}, function(){
+
+          $(this).next("span").animate({opacity:"hide"}, "fast");
+        });
+      });
+    </script>
   <%# /サービス概要表示部分 %>
 
   <%# 商品一覧 %>

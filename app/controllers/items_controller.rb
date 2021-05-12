@@ -1,5 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update, :destroy, :search]
   before_action :search_item, only: [:index, :search]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_top, only: [:edit, :update, :destroy]
+
 
   def index
     @items = Item.where(user_id: current_user.id).order(open_date: :asc)
@@ -20,15 +24,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
@@ -37,7 +38,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     @item.destroy
     redirect_to items_path
   end
@@ -59,5 +59,13 @@ class ItemsController < ApplicationController
 
   def set_item_column
     @item_name = Item.select("item_name").distinct.where(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def move_to_top
+    redirect_to blogs_path unless current_user.id == @item.user_id
   end
 end

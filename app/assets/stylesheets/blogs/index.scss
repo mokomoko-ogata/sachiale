@@ -85,17 +85,24 @@ a {
 }
 
 .description{
-  background-color: yellowgreen;
   position: absolute;
-  top: 200px;
-  left: 320px;
+  top: 190px;
+  left: 80px;
+  right: 80px;
+  display: none;
+  border: 1px solid lightblue;
+  background-color: lightcyan;
+  border-radius: 10px;
 }
+
+
 /* //サービス概要表示部分 */
 
 /* 商品一覧 */
 
 .item-contents {
-  background-color: #FFF;
+  background-image: image-url('sachiale-recipe.png');
+  background-attachment: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,7 +133,9 @@ a {
 .item-lists>.list {
   width: 37vh;
   padding: 1vw;
-  background-color: #FFF;
+  background-color: #ffc87c;
+  border: 1px solid black;
+  margin-left: 10px;
 }
 
 

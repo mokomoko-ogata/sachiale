@@ -40,7 +40,8 @@
 }
 
 .item-show {
-  background-color: #f8f8f8;
+  background-image: image-url('sachiale-fridge.png');
+  background-attachment: scroll;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -57,6 +58,7 @@
   margin-bottom: 5px;
   color: black;
   overflow: scroll;
+  background-color: #fff;
 }
 
 .item-list>.item-image{

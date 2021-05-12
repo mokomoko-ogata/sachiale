@@ -9,6 +9,16 @@ sachialeは冷蔵庫の在庫管理アプリです。アプリを利用するに
 
 # 本番環境
 
+### 接続先情報
+#### URL
+https://sachiale.herokuapp.com/
+- Herokuでデプロイしているため、Herokuの仕様により本番環境にアクセス頂いた際に画像リンクが切れている可能性がございます。
+
+#### テストアカウント
+- メールアドレス：test@com
+- パスワード：aaa111
+
+
 # 利用方法
 
 テスト用アカウントでログインしていただきます。トップページの`投稿する`ボタンよりレシピ投稿ページに遷移する事ができます。必要な情報を入力して`投稿する`を押すとトップページに遷移し、レシピが投稿されている事が確認できます。また、投稿されたレシピをクリックするとそのレシピの詳細ページに遷移でき、レシピの編集や削除が行えます。
@@ -398,3 +408,19 @@ VSCode
 ### Association
 
 - belongs_to :user
+
+# ローカルでの動作方法
+
+### 以下のコマンドを順にターミナルで実行してください
+
+```
+% git clone https://git.heroku.com/sachiale.git
+% cd sachiale
+% bundle install
+% yarn install
+% rails db:create
+% rails db:migrate
+% rails s
+```
+
+- このアプリケーションはmacOS Big Sur 11.3にインストールしたRuby 2.6.5、rails 6.0.0を使用しています。

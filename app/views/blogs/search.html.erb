@@ -1,0 +1,53 @@
+<%# cssはitems/index,blogs/indexのスタイルを参照 %>
+<%= render "shared/header" %>
+
+<div class="my-item-page">
+  <div class="title-content">
+    <h2 class="page-title">
+      検索されたレシピはこちら！
+    </h2>
+    <p class="page-explain">
+      トップページで検索したレシピ結果が一覧で表示されています。
+    </p>
+    <p class="page-explain">
+      今日の献立の参考にしましょう！
+    </p>
+  </div>
+
+  <div class="item-contents">
+    <h1 class="search-title">検索したレシピ一覧</h1>
+    <% if @results.length !=0 %>
+      <% @results.each do |blog| %>
+          <li class='list'>
+            <%= link_to blog_path(blog.id) do %>
+            <div class='item-img-content'>
+              <%= image_tag blog.image, class: "item-img" %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= blog.recipe_name %>
+              </h3>      
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+            <% end %>
+          </li>
+        <% end %>
+    <% else %>
+      該当する食材はありません
+    <% end %>
+  </div>
+
+  <div class="links">
+    <div class="new-item">
+      <%= link_to "戻る", root_path, class:"page-change-btn" %>
+    </div>
+    <div class="buy-list">
+      <%= link_to "レシピ投稿", new_blog_path, class:"page-change-btn" %>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>

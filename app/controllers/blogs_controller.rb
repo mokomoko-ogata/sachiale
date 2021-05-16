@@ -25,6 +25,7 @@ class BlogsController < ApplicationController
   def show
     @comments = Comment.where(blog_id: @blog.id)
     @comment = Comment.new
+    @current_blog = Blog.find(@blog.id)
   end
 
   def edit

@@ -39,6 +39,14 @@
         </div>
         <%= f.text_area :explain, class:"recipes-text", id:"item-info", placeholder:"レシピの説明（必須 2,000文字まで）" ,rows:"7" ,maxlength:"2000" %>
       </div>
+      <fieldset>
+        <legend>食材選択</legend>
+        <% Item.where(user_id: current_user.id).each do |item| %>
+          <label>
+            <input type="checkbox" name="blog[item_ids][]" value=<%= item.id %> ><%= item.item_name %>
+          </label>
+        <% end %>
+      </fieldset>
     </div>
     <%# /レシピ名とレシピ説明 %>
     <%# 材料費合計 %>

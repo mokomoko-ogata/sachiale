@@ -21,7 +21,11 @@
           </tr>
           <tr>
             <th class="detail-item">材料</th>
-            <td class="detail-value">'hoge'</td>
+            <td class="detail-value">
+              <% @current_blog.items.each do |item| %>
+                ・<%= item.item_name %>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>

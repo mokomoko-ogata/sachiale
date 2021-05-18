@@ -55,6 +55,19 @@
     </script>
   <%# /サービス概要表示部分 %>
 
+  <div class="search-area">
+    <h1 class="search-title">
+      レシピ検索
+    </h1>
+    <%= search_form_for @p, url: blogs_search_path, class:"search-form" do |f| %>
+      <%= f.label :recipe_name_eq, 'レシピ名' %>
+      <%= f.collection_select :recipe_name_eq, @blog_name, :recipe_name, :recipe_name, include_blank: '指定なし' %>
+      <br>
+      <%= f.submit '検索', class: "search-btn" %>
+    <% end %>
+  </div>
+  
+
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>みんなのオススメレシピ！</h2>

@@ -2,9 +2,11 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
+  before_action :search_blog, only: [:index, :search]
 
   def index
     @blogs = Blog.order('created_at DESC')
+    set_blog_column
   end
 
   def new
@@ -23,6 +25,7 @@ class BlogsController < ApplicationController
   def show
     @comments = Comment.where(blog_id: @blog.id)
     @comment = Comment.new
+    @current_blog = Blog.find(@blog.id)
   end
 
   def edit
@@ -41,10 +44,14 @@ class BlogsController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    @results = @p.result
+  end
+
   private
 
   def blog_params
-    params.require(:blog).permit(:image, :recipe_name, :explain, :price).merge(user_id: current_user.id)
+    params.require(:blog).permit(:image, :recipe_name, :explain, :price, {item_ids: []}).merge(user_id: current_user.id)
   end
 
   def set_blog
@@ -53,5 +60,13 @@ class BlogsController < ApplicationController
 
   def move_to_index
     redirect_to action: :index unless current_user.id == @blog.user_id
+  end
+
+  def search_blog
+    @p = Blog.ransack(params[:q])
+  end
+
+  def set_blog_column
+    @blog_name = Blog.select("recipe_name").distinct
   end
 end

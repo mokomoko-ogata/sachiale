@@ -67,6 +67,10 @@ crumb :edit_buys_list do
   parent :buys_list
 end
 
+crumb :blog_search do
+  link "レシピ検索結果", blogs_search_path
+  parent :root
+end
 
 # crumb :projects do
 #   link "Projects", projects_path

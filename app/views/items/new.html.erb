@@ -80,7 +80,24 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+        <select class="select-box" id="item-category">
+          <option value="1" class="item[category_id]" selected>--</option>
+          <option value="2" class="item[category_id]" >お肉類</option>
+          <option value="3" class="item[category_id]" >野菜・果物類</option>
+          <option value="4" class="item[category_id]" >魚介類</option>
+          <option value="5" class="item[category_id]" >乾物・海藻類</option>
+          <option value="6" class="item[category_id]" >きのこ・山菜類</option>
+          <option value="7" class="item[category_id]" >卵類</option>
+          <option value="8" class="item[category_id]" >イモ類</option>
+          <option value="9" class="item[category_id]" >パン類</option>
+          <option value="10" class="item[category_id]" >ごはん類</option>
+          <option value="11" class="item[category_id]" >乳製品類</option>
+          <option value="12" class="item[category_id]" >豆・豆腐・豆腐加工品類</option>
+          <option value="13" class="item[category_id]" >麺類</option>
+          <option value="14" class="item[category_id]" >調味料</option>
+          <option value="15" class="item[category_id]" >飲み物</option>
+        </select>
+        <%# f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
           肉類の食材選択
         </div>

@@ -98,58 +98,84 @@
           <option value="15" class="item[category_id]" >飲み物</option>
         </select>
         <%# f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
-        <div class="weight-bold-text">
-          肉類の食材選択
+        <div id="item-meat">
+          <div class="weight-bold-text">
+            肉類の食材選択
+          </div>
+          <%= f.collection_select(:meat_id, Meat.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:meat_id, Meat.all, :id, :name, {}, {class:"select-box", id:"item-meat"}) %>
-        <div class="weight-bold-text">
-          野菜類の食材選択
+        <div id="item-vegetable">
+          <div class="weight-bold-text">
+            野菜類の食材選択
+          </div>
+          <%= f.collection_select(:vegetable_id, Vegetable.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:vegetable_id, Vegetable.all, :id, :name, {}, {class:"select-box", id:"item-vegetable"}) %>
-        <div class="weight-bold-text">
-          魚介類の食材選択
+        <div id="item-seafood">
+          <div class="weight-bold-text">
+            魚介類の食材選択
+          </div>
+          <%= f.collection_select(:seafood_id, Seafood.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:seafood_id, Seafood.all, :id, :name, {}, {class:"select-box", id:"item-seafood"}) %>
-        <div class="weight-bold-text">
-          乾物・海藻類の食材選択
+        <div id="item-seaweed">
+          <div class="weight-bold-text">
+            乾物・海藻類の食材選択
+          </div>
+          <%= f.collection_select(:seaweed_id, Seaweed.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:seaweed_id, Seaweed.all, :id, :name, {}, {class:"select-box", id:"item-seaweed"}) %>
-        <div class="weight-bold-text">
-          きのこ・山菜類の食材選択
+        <div id="item-mushroom">
+          <div class="weight-bold-text">
+            きのこ・山菜類の食材選択
+          </div>
+          <%= f.collection_select(:mushroom_id, Mushroom.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:mushroom_id, Mushroom.all, :id, :name, {}, {class:"select-box", id:"item-mushroom"}) %>
-        <div class="weight-bold-text">
-          卵類の食材選択
+        <div id="item-egg">
+          <div class="weight-bold-text">
+            卵類の食材選択
+          </div>
+          <%= f.collection_select(:egg_id, Egg.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:egg_id, Egg.all, :id, :name, {}, {class:"select-box", id:"item-egg"}) %>
-        <div class="weight-bold-text">
-          イモ類の食材選択
+        <div id="item-corm">
+          <div class="weight-bold-text">
+            イモ類の食材選択
+          </div>
+          <%= f.collection_select(:corm_id, Corm.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:corm_id, Corm.all, :id, :name, {}, {class:"select-box", id:"item-corm"}) %>
-        <div class="weight-bold-text">
-          パン類の食材選択
+        <div id="item-bread">
+          <div class="weight-bold-text">
+            パン類の食材選択
+          </div>
+          <%= f.collection_select(:bread_id, Bread.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:bread_id, Bread.all, :id, :name, {}, {class:"select-box", id:"item-bread"}) %>
-        <div class="weight-bold-text">
-          ごはん類の食材選択
+        <div id="item-rice">
+          <div class="weight-bold-text">
+            ごはん類の食材選択
+          </div>
+          <%= f.collection_select(:rice_id, Rice.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:rice_id, Rice.all, :id, :name, {}, {class:"select-box", id:"item-rice"}) %>
-        <div class="weight-bold-text">
-          乳製品類の食材選択
+        <div id="item-milk">
+          <div class="weight-bold-text">
+            乳製品類の食材選択
+          </div>
+          <%= f.collection_select(:milk_id, Milk.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:milk_id, Milk.all, :id, :name, {}, {class:"select-box", id:"item-milk"}) %>
-        <div class="weight-bold-text">
-          豆・豆腐・豆腐加工品類の食材選択
+        <div id="item-bean">
+          <div class="weight-bold-text">
+            豆・豆腐・豆腐加工品類の食材選択
+          </div>
+          <%= f.collection_select(:bean_id, Bean.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:bean_id, Bean.all, :id, :name, {}, {class:"select-box", id:"item-bean"}) %>
-        <div class="weight-bold-text">
-          麺類の食材選択
+        <div id="item-noodle">
+          <div class="weight-bold-text">
+            麺類の食材選択
+          </div>
+          <%= f.collection_select(:noodle_id, Noodle.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:noodle_id, Noodle.all, :id, :name, {}, {class:"select-box", id:"item-noodle"}) %>
-        <div class="weight-bold-text">
-          調味料類の選択
+        <div id="item-seasoning">
+          <div class="weight-bold-text">
+            調味料類の選択
+          </div>
+          <%= f.collection_select(:seasoning_id, Seasoning.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <%= f.collection_select(:seasoning_id, Seasoning.all, :id, :name, {}, {class:"select-box", id:"item-seasoning"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>

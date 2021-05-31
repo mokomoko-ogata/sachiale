@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
   before_action :search_blog, only: [:index, :search]
 
   def index
-    @blogs = Blog.order('created_at DESC')
+    @blogs = Blog.order('created_at DESC').page(params[:page]).per(2)
     set_blog_column
   end
 

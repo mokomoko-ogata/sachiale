@@ -7,6 +7,7 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.order('created_at DESC').page(params[:page]).per(2)
     set_blog_column
+    @item_blogs = Blog.joins(:items).where(user_id: current_user.id)
   end
 
   def new

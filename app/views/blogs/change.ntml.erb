@@ -1,0 +1,121 @@
+<%= render "shared/header" %>
+<div class='main'>
+  <%# 画面上部の「誰でも簡単に食材の在庫を管理できるアプリ」帯部分 %>
+  <div class='title-contents'>
+    <h2 class='service-title'>
+      誰でも簡単に食材の在庫を管理できるアプリ
+    </h2>
+    <p class='service-explain'>
+      sachialeはだれでもかんたんに在庫管理できる
+    </p>
+    <p class='service-explain'>
+      冷蔵庫食材管理アプリです
+    </p>
+    <div class='store-btn'>
+      <%= link_to image_tag("app-store.svg", class:"apple-btn"), "#" %>
+      <%= link_to image_tag("dl-android.png", class:"google-btn"), "#" %>
+    </div>
+  </div>
+  <%# /画面上部の「誰でも簡単に食材の在庫を管理できるアプリ」帯部分  %>
+
+  <%# サービス概要表示部分 %>
+    <div class="container">
+      <div class="service">
+        <div class="icon-holder">
+          <%= link_to image_tag("icon01.png", class:"service-icon"), items_path %>
+        </div>
+        <h4 class="service-heading">サービス概要</h4>
+        <span class="description">
+          いつ買ったのか分からない食材や、既に賞味期限が切れた食材が冷蔵庫の中に眠っていませんか？<br>
+          このアプリは購入した食材の情報を登録することで、今ある食材の在庫を管理する事ができます！<br>
+          また、レシピを投稿する事であなたのオススメ料理をみんなにシェアする事ができます！
+        </span>
+      </div>    
+      <div class="service">
+        <div class="icon-holder">
+          <%= link_to image_tag("icon02.png", class:"service-icon"), items_path %>
+        </div>
+        <h4 class="service-heading">マイページ</h4>
+        <span class="description">
+          ユーザー登録することでマイページに食材在庫リストを作成することができます！<br>
+          またマイページより、買い物リストページにも遷移する事ができます。<br>
+          買い物リストを作成して、買い忘れを無くしましょう！<br>
+          アイコンをクリックしてマイページに行こう！
+        </span>
+      </div>
+    </div>
+    <script>
+      $(function(){
+        $('.service-heading').hover(function(){
+          $(this).next("span").animate({opacity:"show"}, "slow");}, function(){
+
+          $(this).next("span").animate({opacity:"hide"}, "fast");
+        });
+      });
+    </script>
+  <%# /サービス概要表示部分 %>
+
+  <div class="search-area">
+    <h1 class="search-title">
+      レシピ検索
+    </h1>
+    <%= search_form_for @p, url: blogs_search_path, class:"search-form" do |f| %>
+      <%= f.label :recipe_name_eq, 'レシピ名' %>
+      <%= f.collection_select :recipe_name_eq, @blog_name, :recipe_name, :recipe_name, include_blank: '指定なし' %>
+      <br>
+      <%= f.submit '検索', class: "search-btn" %>
+    <% end %>
+  </div>
+  
+
+  <%# 商品一覧 %>
+  <div class='item-contents'>
+    <h2 class='title'>みんなのオススメレシピ！</h2>
+    <%= button_to "補充食材を含むレシピを表示", action: "index", class:"recipe-change"%>
+    <%= link_to '新規投稿レシピ', "#", class: "subtitle" %>
+    <ul class='item-lists'>
+      <% if @blogs.present? %>
+        <% @blogs.each do |blog| %>
+          <li class='list'>
+            <%= link_to blog_path(blog.id) do %>
+            <div class='item-img-content'>
+              <%= image_tag blog.image, class: "item-img" %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= blog.recipe_name %>
+              </h3>      
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+            <% end %>
+          </li>
+        <% end %>
+      <% else %>
+        <li class='list'>
+          <%= link_to '#' do %>
+          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              レシピを投稿してね！
+            </h3>      
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <%= paginate @blogs %>
+  </div>
+  <%# /商品一覧 %>
+</div>
+<%= link_to(new_blog_path, class: 'purchase-btn') do %>
+  <span class='purchase-btn-text'>投稿する</span>
+  <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+<% end %>
+<%= render "shared/footer" %>

@@ -70,12 +70,12 @@
 
   <%# 商品一覧 %>
   <div class='item-contents'>
-    <h2 class='title'>みんなのオススメレシピ！</h2>
-    <%= button_to "補充食材を含むレシピを表示", action: "index", class:"recipe-change"%>
+    <h2 class='title'>あなたの冷蔵庫の食材を含むレシピ！</h2>
+    <%= button_to "全てのレシピを表示", root_path, method: :get, class:"recipe-change"%>
     <%= link_to '新規投稿レシピ', "#", class: "subtitle" %>
     <ul class='item-lists'>
-      <% if @blogs.present? %>
-        <% @blogs.each do |blog| %>
+      <% if @item_blogs.present? %>
+        <% @item_blogs.each do |blog| %>
           <li class='list'>
             <%= link_to blog_path(blog.id) do %>
             <div class='item-img-content'>
@@ -110,7 +110,7 @@
         </li>
       <% end %>
     </ul>
-    <%= paginate @blogs %>
+    <%= paginate @item_blogs %>
   </div>
   <%# /商品一覧 %>
 </div>

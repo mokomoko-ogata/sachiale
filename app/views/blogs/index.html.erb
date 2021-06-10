@@ -71,7 +71,7 @@
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>みんなのオススメレシピ！</h2>
-    <%= button_to "補充食材を含むレシピを表示", action: "index", class:"recipe-change"%>
+    <%= button_to "補充食材を含むレシピを表示", blogs_change_path, method: :get, class:"recipe-change"%>
     <%= link_to '新規投稿レシピ', "#", class: "subtitle" %>
     <ul class='item-lists'>
       <% if @blogs.present? %>

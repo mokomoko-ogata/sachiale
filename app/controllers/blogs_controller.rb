@@ -1,8 +1,8 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :change]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
-  before_action :search_blog, only: [:index, :search]
+  before_action :search_blog, only: [:index, :search, :change]
 
   def index
     @blogs = Blog.order('created_at DESC').page(params[:page]).per(2)

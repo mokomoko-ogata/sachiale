@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_top, only: [:edit, :update, :destroy]
 
-
   def index
     @items = Item.where(user_id: current_user.id).order(open_date: :asc)
     set_item_column
@@ -58,7 +57,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item_column
-    @item_name = Item.select("item_name").distinct.where(user_id: current_user.id)
+    @item_name = Item.select('item_name').distinct.where(user_id: current_user.id)
   end
 
   def set_item

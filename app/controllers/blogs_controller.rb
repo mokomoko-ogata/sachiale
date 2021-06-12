@@ -56,7 +56,7 @@ class BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:image, :recipe_name, :explain, :price, {item_ids: []}).merge(user_id: current_user.id)
+    params.require(:blog).permit(:image, :recipe_name, :explain, :price, { item_ids: [] }).merge(user_id: current_user.id)
   end
 
   def set_blog
@@ -72,6 +72,6 @@ class BlogsController < ApplicationController
   end
 
   def set_blog_column
-    @blog_name = Blog.select("recipe_name").distinct
+    @blog_name = Blog.select('recipe_name').distinct
   end
 end

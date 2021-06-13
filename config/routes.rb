@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "blogs#index"
   get 'items/search'
   get 'blogs/search'
+  get 'blogs/change'
   resources :blogs do
     resources :comments, only: [:new, :create]
   end

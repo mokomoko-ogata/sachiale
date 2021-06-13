@@ -1,8 +1,8 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :change]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
-  before_action :search_blog, only: [:index, :search]
+  before_action :search_blog, only: [:index, :search, :change]
 
   def index
     @blogs = Blog.order('created_at DESC').page(params[:page]).per(2)
@@ -48,10 +48,15 @@ class BlogsController < ApplicationController
     @results = @p.result
   end
 
+  def change
+    @item_blogs = Blog.joins(:items).where(user_id: current_user.id).distinct.page(params[:page]).per(2)
+    set_blog_column
+  end
+
   private
 
   def blog_params
-    params.require(:blog).permit(:image, :recipe_name, :explain, :price, {item_ids: []}).merge(user_id: current_user.id)
+    params.require(:blog).permit(:image, :recipe_name, :explain, :price, { item_ids: [] }).merge(user_id: current_user.id)
   end
 
   def set_blog
@@ -67,6 +72,6 @@ class BlogsController < ApplicationController
   end
 
   def set_blog_column
-    @blog_name = Blog.select("recipe_name").distinct
+    @blog_name = Blog.select('recipe_name').distinct
   end
 end

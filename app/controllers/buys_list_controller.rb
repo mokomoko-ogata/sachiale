@@ -3,7 +3,6 @@ class BuysListController < ApplicationController
   before_action :set_buy_list, only: [:edit, :update, :destroy]
   before_action :move_to_top, only: [:edit, :update, :destroy]
 
-
   def index
     @buy_list = BuyList.where(user_id: current_user.id)
   end

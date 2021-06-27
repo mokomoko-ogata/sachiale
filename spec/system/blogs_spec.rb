@@ -134,27 +134,51 @@ RSpec.describe 'レシピ削除', type: :system do
   context 'レシピが削除できるとき' do
     it 'ログインしたユーザーは自分が投稿したレシピの削除ができる' do
       # レシピ1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user[email]', with: @blog1.user.email
+      fill_in 'user[password]', with: @blog1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # レシピ1の詳細ページに遷移する
+      visit blog_path(@blog1.id)
       # 削除ボタンがある
+      expect(page).to have_content('削除')
       # 投稿を削除するとレコードのカウントが1減る事を確認する
+      expect do
+        find('.item-destroy').click
+      end.to change { Blog.count }.by(-1)
       # トップページに遷移した事を確認する
+      expect(current_path).to eq(root_path)
       # トップページにはレシピ1の内容が存在しない
+      expect(page).to have_no_link href: item_path(@blog1)
     end
   end
 
   context 'レシピが削除できないとき' do
     it 'ログインしたユーザーは自分以外が投稿したレシピの削除ができない' do
       # レシピ1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user[email]', with: @blog1.user.email
+      fill_in 'user[password]', with: @blog1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # レシピ2の詳細ページに遷移する
+      visit blog_path(@blog2.id)
       # 削除ボタンが無いことを確認する
+      expect(page).to have_no_content('削除')
     end
 
     it 'ログインしていないとレシピの削除ボタンがない' do
       # トップページに移動
+      visit root_path
       # レシピ1の詳細ページに移動する
+      visit blog_path(@blog1.id)
       # 削除ボタンはない
+      expect(page).to have_no_content('削除')
       # レシピ2の詳細ページに移動する
+      visit blog_path(@blog2.id)
       # 削除ボタンはない
+      expect(page).to have_no_content('削除')
     end
   end
 end

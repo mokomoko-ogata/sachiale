@@ -182,3 +182,17 @@ RSpec.describe 'レシピ削除', type: :system do
     end
   end
 end
+
+RSpec.describe 'レシピ詳細', type: :system do
+  before do
+    @blog = FactoryBot.create(:blog)
+  end
+  it 'ログインの有無に関わらずレシピ詳細ページに遷移できる' do
+    # トップページに移動する
+    # レシピの詳細ページに遷移する
+    # レシピの詳細が表示されていることを確認する(画像)
+    # レシピの詳細が表示されていることを確認する(レシピ名)
+    # レシピの詳細が表示されていることを確認する(費用)
+    # レシピの詳細が表示されていることを確認する(説明)
+  end
+end

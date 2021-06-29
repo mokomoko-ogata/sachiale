@@ -189,10 +189,16 @@ RSpec.describe 'レシピ詳細', type: :system do
   end
   it 'ログインの有無に関わらずレシピ詳細ページに遷移できる' do
     # トップページに移動する
+    visit root_path
     # レシピの詳細ページに遷移する
+    visit blog_path(@blog.id)
     # レシピの詳細が表示されていることを確認する(画像)
+    expect(page).to have_selector("img[src$='test-image.png']")
     # レシピの詳細が表示されていることを確認する(レシピ名)
+    expect(page).to have_content(@blog.recipe_name)
     # レシピの詳細が表示されていることを確認する(費用)
+    expect(page).to have_content(@blog.price)
     # レシピの詳細が表示されていることを確認する(説明)
+    expect(page).to have_content(@blog.explain)
   end
 end

@@ -1,9 +1,31 @@
 require 'rails_helper'
 
-RSpec.describe "Items", type: :system do
+RSpec.describe "食材補充", type: :system do
   before do
-    driven_by(:rack_test)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item)
   end
 
-  pending "add some scenarios (or delete) #{__FILE__}"
+  context '食材補充できるとき' do
+    it 'ログインしたユーザーは食材補充できる' do
+      # ログインする
+      # 食材一覧ページに移動する
+      # 食材補充ページへのリンクがある事を確認する
+      # 食材補充ページに移動する
+      # フォームを入力する
+      # 補充するとItemモデルのカウントが1上がることを確認する
+      # 食材一覧ページに遷移する事を確認する
+      # 食材一覧ページには先ほど補充した内容の食材が存在する事を確認する(画像)
+      # 食材一覧ページには先ほど補充した内容の食材が存在する事を確認する(食材名)
+      # 食材一覧ページには先ほど補充した内容の食材が存在する事を確認する(賞味期限)
+      # 食材一覧ページには先ほど補充した内容の食材が存在する事を確認する(数量)
+    end
+  end
+
+  context '食材補充できないとき' do
+    it 'ログインしていないと食材一覧ページに遷移できない' do
+      # トップページに遷移する
+      # 食材補充ページに遷移しようとするとログインページにリダイレクトされる
+    end
+  end
 end

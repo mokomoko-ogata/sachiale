@@ -68,31 +68,85 @@ RSpec.describe '食材情報編集', type: :system do
   context '食材情報が編集できるとき' do
     it 'ログインしたユーザーは自分が補充した食材の情報を編集できる' do
       # 食材1を補充したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user[email]', with: @item1.user.email
+      fill_in 'user[password]', with: @item1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
+      # 食材1を補充したユーザーの食材一覧ページに遷移する
+      visit items_path(@item1.user.id)
       # 食材1の詳細画面に遷移する
+      visit item_path(@item1.id)
       # 編集ボタンがある事を確認する
+      expect(page).to have_content('食材の編集')
       # 編集ページに遷移する
+      visit edit_item_path(@item1.id)
       # 既に補充済みの内容がフォームに入っている事を確認する
+      expect(
+        find('#item-name').value
+      ).to eq(@item1.item_name)
+      expect(
+        find('#item-info').value
+      ).to eq(@item1.memo)
+      expect(
+        find('#item_amount').value
+      ).to eq(@item1.amount.to_s)
+      expect(
+        find('#item-amount').value
+      ).to eq(@item1.unit_id.to_s)
+      expect(
+        find('#item-category').value
+      ).to eq(@item1.category_id.to_s)
       # 食材情報を編集する
+      attach_file 'item-image', "#{Rails.root}/public/images/test-image.png"
+      fill_in 'item[item_name]', with: "#{@item1.item_name}+編集したテキスト"
+      fill_in 'item[memo]', with: "#{@item1.memo}+編集したテキスト"
+      fill_in 'item[amount]', with: (@item1.amount + 2000).to_s
+      select '本', from: 'item[unit_id]'
+      select '2020', from: 'item_open_date_1i'
+      select '1', from: 'item_open_date_2i'
+      select '1', from: 'item_open_date_3i'
+      select 'お肉類', from: 'item[category_id]'
       # 編集してもItemモデルのカウントは変わらないことを確認する
+      expect  do
+        find('input[name="commit"]').click
+      end.to change { Item.count }.by(0)
       # 食材詳細ページに遷移したことを確認する
+      expect(current_path).to eq(item_path(@item1.id))
       # 詳細ページには変更した内容の食材が存在している(画像)
+      expect(page).to have_selector("img[src$='test-image.png']")
       # 詳細ページには変更した内容の食材が存在している(食材名)
+      expect(page).to have_content("#{@item1.item_name}+編集したテキスト")
       # 詳細ページには変更した内容の食材が存在している(メモ)
+      expect(page).to have_content("#{@item1.memo}+編集したテキスト")
       # 詳細ページには変更した内容の食材が存在している(保存数量)
+      expect(page).to have_content((@item1.amount + 2000).to_s)
       # 詳細ページには変更した内容の食材が存在している(賞味期限)
+      expect(page).to have_content('2020-01-01')
       # 詳細ページには変更した内容の食材が存在している(カテゴリー)
+      expect(page).to have_content('お肉類')
     end
   end
 
   context '食材情報編集ができないとき' do
-    it 'ログインしたユーザーは自分以外が補充した食材の編集画面には遷移できない' do
+    it 'ログインしたユーザーは自分以外が補充した食材は表示されない' do
       # 食材1を補充したユーザーでログインする
-      # 食材2を補充したユーザーの食材一覧ページに遷移しようとするとトップページにリダイレクトされる
+      visit new_user_session_path
+      fill_in 'user[email]', with: @item1.user.email
+      fill_in 'user[password]', with: @item1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
+      # 食材1を補充したユーザーの食材一覧ページに遷移する
+      visit items_path(@item1.user.id)
+      # 食材2は一覧に表示されていない事を確認する
+      expect(page).to have_no_link href: item_path(@item2)
     end
     it 'ログインしていないと食材の編集画面には遷移できない' do
       # トップページにいる
-      # 食材1を補充したユーザーの食材一覧ページに遷移しようとするとトップページにリダイレクトされる
-      # 食材2を補充したユーザーの食材一覧ページに遷移しようとするとトップページにリダイレクトされる
+      visit root_path
+      # 食材一覧ページに遷移しようとするとログインページにリダイレクトされる
+      get items_path
+      expect(response).to redirect_to '/users/sign_in'
     end
   end
 end

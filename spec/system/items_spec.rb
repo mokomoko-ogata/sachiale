@@ -159,23 +159,46 @@ RSpec.describe '食材削除', type: :system do
   context '食材が削除できるとき' do
     it 'ログインしたユーザーは自分が補充した食材の削除ができる' do
       # 食材1を補充したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user[email]', with: @item1.user.email
+      fill_in 'user[password]', with: @item1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # 食材1を補充したユーザーの食材一覧ページに遷移する
+      visit items_path(@item1.user.id)
       # 食材1の詳細画面に遷移する
+      visit item_path(@item1.id)
       # 削除ボタンがあることを確認する
+      expect(page).to have_content('削除')
       # 食材を削除するとItemモデルのカウントが1減ることを確認する
+      expect do
+        find('.item-destroy').click
+      end.to change { Item.count }.by(-1)
       # 食材一覧ページに遷移したことを確認する
-      # 食材一覧ページには商品1の内容が存在しないことを確認する
+      expect(current_path).to eq(items_path)
+      # 食材一覧ページには食材1の内容が存在しないことを確認する
+      expect(page).to have_no_link href: item_path(@item1)
     end
   end
   context '食材が削除できないとき' do
     it 'ログインしたユーザーは自分以外が補充した食材の削除ができない' do
       # 食材1を補充したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user[email]', with: @item1.user.email
+      fill_in 'user[password]', with: @item1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # 食材1を補充したユーザーの食材一覧ページに遷移する
+      visit items_path(@item1.user.id)
       # 食材2は一覧に表示されていない事を確認する
+      expect(page).to have_no_link href: item_path(@item2)
     end
     it 'ログインしていないと食材の編集画面には遷移できない' do
        # トップページに移動する
+       visit root_path
        # 食材一覧ページに遷移しようとするとログインページにリダイレクトされる
+       get items_path
+      expect(response).to redirect_to '/users/sign_in'
     end
   end
 end

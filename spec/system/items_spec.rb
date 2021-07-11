@@ -211,25 +211,47 @@ RSpec.describe '食材詳細', type: :system do
   context '食材詳細画面に遷移できる' do
     it 'ログインしているユーザーは自分が補充した食材の詳細画面に遷移できる' do
       # 食材1を補充したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user[email]', with: @item1.user.email
+      fill_in 'user[password]', with: @item1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # 食材1を補充したユーザーの食材一覧ページに遷移する
+      visit items_path(@item1.user.id)
       # 食材1の詳細画面に遷移する
+      visit item_path(@item1.id)
       # 食材の詳細が表示されていることを確認する(画像)
+      expect(page).to have_selector("img[src$='test-image.png']")
       # 食材の詳細が表示されていることを確認する(食材名)
+      expect(page).to have_content(@item1.item_name)
       # 食材の詳細が表示されていることを確認する(食材のメモ)
+      expect(page).to have_content(@item1.memo)
       # 食材の詳細が表示されていることを確認する(保存数量)
+      expect(page).to have_content(@item1.amount)
       # 食材の詳細が表示されていることを確認する(賞味期限)
+      expect(page).to have_content(@item1.open_date)
       # 食材の詳細が表示されていることを確認する(カテゴリー)
+      expect(page).to have_content('野菜・果物類')
     end
   end
   context '食材詳細画面に遷移できない' do
     it 'ログインしたユーザーは自分以外が補充した食材の詳細画面に遷移できない' do
       # 食材1を補充したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user[email]', with: @item1.user.email
+      fill_in 'user[password]', with: @item1.user.password
+      find('input[name="commit"]').click
       # 食材1を補充したユーザーの食材一覧ページに遷移する
+      visit items_path(@item1.user.id)
       # 食材2は一覧に表示されていない事を確認する
+      expect(page).to have_no_link href: item_path(@item2)
     end
     it 'ログインしていないと食材詳細画面に遷移できない' do
       # トップページに移動する
+      visit root_path
       # 食材一覧ページに遷移しようとするとログインページにリダイレクトされる
+      get items_path
+      expect(response).to redirect_to '/users/sign_in'
     end
   end
 end

@@ -1,9 +1,30 @@
 require 'rails_helper'
 
-RSpec.describe "BuysLists", type: :system do
+RSpec.describe "買い物リスト追加", type: :system do
   before do
-    driven_by(:rack_test)
+    @user = FactoryBot.create(:user)
+    @buy_list = FactoryBot.build(:buy_list)
   end
-
-  pending "add some scenarios (or delete) #{__FILE__}"
+  context '買い物リストを追加できるとき' do
+    it 'ログインしたユーザーは買い物リストを追加できる' do
+      # ログインする
+      # 食材一覧ページに移動する
+      # 買いものリスト一覧ページへのリンクがある事を確認する
+      # 買いものリスト一覧ページに移動する
+      # 買いものリスト追加ページへのリンクがある事を確認する
+      # 買いものリスト追加ページに移動する
+      # フォームに情報を入力する
+      # 出品するとBuyListモデルのカウントが1上がることを確認する
+      # 買いものリスト一覧ページに遷移することを確認する
+      # 買いものリスト一覧ページには先ほど追加した内容の食材が存在することを確認する（食材名）
+      # 買いものリスト一覧ページには先ほど追加した内容の食材が存在することを確認する（メモ）
+      # 買いものリスト一覧ページには先ほど追加した内容の食材が存在することを確認する（数量）
+    end
+  end
+  context '買いものリストを追加できないとき' do
+    it 'ログインしていないと買いものリスト一覧ページに遷移できない' do
+      # トップページに遷移する
+      # 買いものリスト追加ページに遷移しようとするとログインページにリダイレクトされる
+    end
+  end
 end

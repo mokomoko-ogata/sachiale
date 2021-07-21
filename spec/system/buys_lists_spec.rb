@@ -147,24 +147,48 @@ RSpec.describe '買い物リスト削除', type: :system do
   context '買い物リストが削除できるとき' do
     it 'ログインしたユーザーは自分が追加した買い物リストを削除できる' do
       # 買い物リスト1を追加したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user[email]', with: @buy_list1.user.email
+      fill_in 'user[password]', with: @buy_list1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # 買い物リスト1を追加したユーザーの食材一覧ページに遷移する
+      visit items_path(@buy_list1.user.id)
       # 買い物リスト1を追加したユーザーの買い物リスト一覧ページに遷移する
+      visit buys_list_index_path(@buy_list1.user.id)
       # 削除ボタンがあることを確認する
+      expect(page).to have_content('削除')
       # 買い物リストを削除するとレコードのカウントが1減ることを確認する
+      expect do
+        fine('.item-destroy').click
+      end.to change { BuyList.count }.by(-1)
       # 買い物リスト一覧ページに遷移したことを確認する
+      expect(current_path).to eq(buys_list_index_path(@buy_list1.user.id))
       # 買い物リスト一覧ページには商品1の内容が存在しないことを確認する
+      expect(page).to have_no_link href: buys_list_path(@buy_list1)
     end
   end
   context '買い物リストが削除できないとき' do
     it 'ログインしたユーザーは自分以外が追加した買い物リストを削除できない' do
       # 買い物リスト1を追加したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'user[email]', with: @buy_list1.user.email
+      fill_in 'user[password]', with: @buy_list1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # 買い物リスト1を追加したユーザーの食材一覧ページに遷移する
+      visit items_path(@buy_list1.user.id)
       # 買い物リスト1を追加したユーザーの買い物リスト一覧ページに遷移する
+      visit buys_list_index_path(@buy_list1.user.id)
       # 買い物リスト2は一覧に表示されていない事を確認する
+      expect(page).to have_no_link href: buys_list_path(@buy_list2)
     end
     it 'ログインしていないと買い物リスト一覧ページに遷移できない' do
       # トップページに移動する
+      visit root_path
       # 食材一覧ページに遷移しようとするとログインページにリダイレクトされる
+      get items_path
+      expect(response).to redirect_to '/users/sign_in'
     end
   end
 end

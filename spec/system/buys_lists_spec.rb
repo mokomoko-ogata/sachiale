@@ -75,17 +75,17 @@ RSpec.describe '買い物リスト編集', type: :system do
       # 編集ボタンがあることを確認する
       expect(page).to have_content('編集')
       # 編集ページに遷移する
-      visit edit_item_path(@buy_list1.id)
+      visit edit_buys_list_path(@buy_list1.id)
       # 既に追加済みの内容がフォームに入っていることを確認する
       expect(
         find('#item-name').value
       ).to eq(@buy_list1.item_name)
       expect(
         find('#item-info').value
-      ).to eq(@buy_list1.item_memo)
+      ).to eq(@buy_list1.buy_memo)
       expect(
-        find('#buy_list_anount').value
-      ).to eq(@buy_list1.amount)
+        find('#buy_list_amount').value
+      ).to eq(@buy_list1.amount.to_s)
       expect(
         find('#item-name').value
       ).to eq(@buy_list1.item_name)
@@ -94,7 +94,7 @@ RSpec.describe '買い物リスト編集', type: :system do
       ).to eq(@buy_list1.unit_id.to_s)
       # 買い物リスト情報を編集する
       fill_in 'buy_list[item_name]', with: "#{@buy_list1.item_name}+編集したテキスト"
-      fill_in 'buy_list[buy_memo]', with: "#{@buy_list1.memo}+編集したテキスト"
+      fill_in 'buy_list[buy_memo]', with: "#{@buy_list1.buy_memo}+編集したテキスト"
       fill_in 'buy_list[amount]', with: (@buy_list1.amount + 2000).to_s
       select '本', from: 'buy_list[unit_id]'
       # 編集してもBuyListモデルのカウントは変わらないことを確認する
@@ -106,7 +106,7 @@ RSpec.describe '買い物リスト編集', type: :system do
       # 買い物リスト一覧ページには先ほど変更した内容の食材が存在している(食材名)
       expect(page).to have_content("#{@buy_list1.item_name}+編集したテキスト")
       # 買い物リスト一覧ページには先ほど変更した内容の食材が存在している(メモ)
-      expect(page).to have_content("#{@buy_list1.memo}+編集したテキスト")
+      expect(page).to have_content("#{@buy_list1.buy_memo}+編集したテキスト")
       # 買い物リスト一覧ページには先ほど変更した内容の食材が存在している(数量)
       expect(page).to have_content((@buy_list1.amount + 2000).to_s)
       # 買い物リスト一覧ページには先ほど変更した内容の食材が存在している(単位)
@@ -160,7 +160,7 @@ RSpec.describe '買い物リスト削除', type: :system do
       expect(page).to have_content('削除')
       # 買い物リストを削除するとレコードのカウントが1減ることを確認する
       expect do
-        fine('.item-destroy').click
+        find('.buy-delete-btn').click
       end.to change { BuyList.count }.by(-1)
       # 買い物リスト一覧ページに遷移したことを確認する
       expect(current_path).to eq(buys_list_index_path(@buy_list1.user.id))

@@ -10,10 +10,22 @@ RSpec.describe "コメント投稿", type: :system do
   context 'コメント投稿ができるとき' do
     it 'ログインしたユーザーはレシピ詳細ページでコメント投稿ができる' do
       # ログインする
+      visit new_user_session_path
+      fill_in 'user[email]', with: @user.email
+      fill_in 'user[password]', with: @user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
       # レシピ詳細ページに遷移する
+      visit blog_path(@blog.id)
       # フォームに入力する
+      fill_in 'comment[text]', with: @comment
       # コメントを投稿するとCommentモデルのカウントが1上がる事を確認する
+      expect  do
+        find('input[name="commit"]').click
+        sleep 5
+      end.to change { Comment.count }.by(1)
       # 詳細ページに先程のコメント内容が表示されている事を確認する
+      expect(page).to have_content @comment
     end
   end
 

@@ -32,8 +32,14 @@ RSpec.describe "コメント投稿", type: :system do
   context 'コメント投稿ができないとき' do
     it 'ログインしていないユーザーはレシピ詳細ページでコメント投稿できない' do
       # レシピ詳細ページに遷移する
+      visit blog_path(@blog.id)
       # フォームに情報を入力する
+      fill_in 'comment[text]', with: @comment
       # コメントを送信してもCommentモデルのカウントは変わらない
+      expect  do
+        find('input[name="commit"]').click
+        sleep 5
+      end.to change { Comment.count }.by(0)
     end
   end
 end
